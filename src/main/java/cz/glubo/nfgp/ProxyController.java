@@ -37,7 +37,8 @@ public class ProxyController {
             log.info(responseToString(respEntity));
             respEntity.getHeaders().forEach((name, values) -> response.setHeader(name, values.stream().collect(Collectors.joining(","))));
             response.setStatus(respEntity.getStatusCodeValue());
-            response.getOutputStream().print(respEntity.getBody()); //TODO: async?
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().print(respEntity.getBody()); //TODO: async?
         }
     }
 
